@@ -9,9 +9,16 @@
 import SwiftUI
 
 struct MainView: View {
+    @State private var todoList: [ToDoModel] = ToDoModel.sampleToDo
     var body: some View {
-        Text("Hello, world!")
-            .padding()
+        ScrollView {
+            VStack {
+                ForEach(todoList.indices, id: \.self) { index in
+                    ToDoCardView(todo: todoList[index])
+                        .background(index % 2 == 0 ? Color.cyan : Color.mint)
+                }
+            }
+        }
     }
 }
 
