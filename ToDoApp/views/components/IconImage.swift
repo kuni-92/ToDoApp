@@ -13,7 +13,6 @@ struct IconImage: View {
         Image(systemName: "checkmark.seal.fill")
             .renderingMode(.original)
             .resizable()
-            .frame(width: 60, height: 60)
     }
 }
 

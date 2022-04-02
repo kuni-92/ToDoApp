@@ -13,9 +13,15 @@ struct ToDoCardView: View {
     var body: some View {
         HStack {
             IconImage()
+                .frame(width: 40, height: 40)
+                .padding()
             Text(todo.title)
                 .font(.title)
+            Spacer()
         }
+        .frame(width: 300, height: 80)
+        .overlay(RoundedRectangle(cornerRadius: 10).stroke(Color.black, lineWidth: 1))
+
     }
 }
 

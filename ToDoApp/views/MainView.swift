@@ -11,14 +11,20 @@ import SwiftUI
 struct MainView: View {
     @State private var todoList: [ToDoModel] = ToDoModel.sampleToDo
     var body: some View {
-        ScrollView {
-            VStack {
-                ForEach(todoList.indices, id: \.self) { index in
-                    ToDoCardView(todo: todoList[index])
-                        .background(index % 2 == 0 ? Color.cyan : Color.mint)
+        NavigationView {
+            ScrollView {
+                VStack {
+                    ForEach(todoList.indices, id: \.self) { index in
+                        NavigationLink(destination: DetailView()) {
+                            ToDoCardView(todo: todoList[index])
+                                .foregroundColor(.black)
+                                .background(index % 2 == 0 ? Color.cyan : Color.mint)
+                        }
+                    }
                 }
             }
         }
+        .navigationTitle("ToDo list")
     }
 }
 
