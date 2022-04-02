@@ -22,9 +22,9 @@ struct MainView: View {
                         }
                     }
                 }
+                .navigationTitle("ToDo list")
             }
         }
-        .navigationTitle("ToDo list")
     }
 }
 

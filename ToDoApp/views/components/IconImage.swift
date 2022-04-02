@@ -10,7 +10,7 @@ import SwiftUI
 
 struct IconImage: View {
     var body: some View {
-        Image(systemName: "checkmark.seal.fill")
+        Image(systemName: "checkmark.seal")
             .renderingMode(.original)
             .resizable()
     }
