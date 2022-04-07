@@ -17,7 +17,7 @@ struct MainView: View {
                     ForEach(todoList.indices, id: \.self) { index in
                         NavigationLink(destination: DetailView()) {
                             ToDoCardView(todo: todoList[index])
-                                .foregroundColor(.black)
+                                .foregroundColor(.primary)
                                 .background(index % 2 == 0 ? Color.cyan : Color.mint)
                                 .cornerRadius(10)
                         }
