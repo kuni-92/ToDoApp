@@ -19,6 +19,7 @@ struct MainView: View {
                             ToDoCardView(todo: todoList[index])
                                 .foregroundColor(.black)
                                 .background(index % 2 == 0 ? Color.cyan : Color.mint)
+                                .cornerRadius(10)
                         }
                     }
                 }

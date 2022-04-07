@@ -20,7 +20,6 @@ struct ToDoCardView: View {
             Spacer()
         }
         .frame(width: 400, height: 80)
-        .overlay(RoundedRectangle(cornerRadius: 10).stroke(Color.black, lineWidth: 1))
 
     }
 }
