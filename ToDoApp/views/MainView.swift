@@ -27,22 +27,15 @@ struct MainView: View {
                     .navigationTitle("ToDo list")
                 }
 
-                VStack {
-                    Spacer()
-                    HStack {
-                        Spacer()
-                        NavigationLink(destination: AddToDoView()) {
-                            Button(action:{}) {
-                                AddButtonView()
-                                    .background(Color("ButtonColor"))
-                                    .clipShape(Circle())
-                                    .frame(width: 80, height: 80)
-                                    .shadow(radius: 10)
-                            }
-                            .padding(30)
-                        }
-                    }
+                Button(action:{}) {
+                    AddButtonView()
+                        .background(Color("ButtonColor"))
+                        .clipShape(Circle())
+                        .frame(width: 80, height: 80)
+                        .shadow(radius: 10)
                 }
+                .padding(30)
+                .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .bottomTrailing)
             }
         }
     }
