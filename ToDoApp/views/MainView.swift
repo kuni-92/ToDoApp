@@ -10,6 +10,7 @@ import SwiftUI
 
 struct MainView: View {
     @State private var todoList: [ToDoModel] = ToDoModel.sampleToDo
+    @State private var isPresented: Bool = false
     var body: some View {
         NavigationView {
             ZStack {
@@ -27,7 +28,9 @@ struct MainView: View {
                     .navigationTitle("ToDo list")
                 }
 
-                Button(action:{}) {
+                Button(action:{
+                    isPresented = true
+                }) {
                     AddButtonView()
                         .background(Color("ButtonColor"))
                         .clipShape(Circle())
@@ -36,6 +39,9 @@ struct MainView: View {
                 }
                 .padding(30)
                 .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .bottomTrailing)
+            }
+            .sheet(isPresented:$isPresented) {
+               AddToDoView()
             }
         }
     }
