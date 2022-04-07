@@ -11,6 +11,14 @@ import Foundation
 struct ToDoModel: Identifiable {
     var id: UUID = UUID()
     var title: String
+
+    init() {
+        self.title = ""
+    }
+
+    init(title: String) {
+        self.title = title
+    }
 }
 
 extension ToDoModel {
