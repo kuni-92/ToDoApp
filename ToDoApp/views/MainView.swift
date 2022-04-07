@@ -11,6 +11,7 @@ import SwiftUI
 struct MainView: View {
     @State private var todoList: [ToDoModel] = ToDoModel.sampleToDo
     @State private var isPresented: Bool = false
+    @State private var newToDo: ToDoModel = ToDoModel()
     var body: some View {
         NavigationView {
             ZStack {
@@ -40,8 +41,13 @@ struct MainView: View {
                 .padding(30)
                 .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .bottomTrailing)
             }
-            .sheet(isPresented:$isPresented) {
-               AddToDoView()
+            .sheet(isPresented:$isPresented, onDismiss: {
+                if newToDo.title != "" {
+                    todoList.append(newToDo)
+                    newToDo = ToDoModel()
+                }
+            }) {
+                AddToDoView(isPresented: $isPresented, newToDo: $newToDo)
             }
         }
     }
