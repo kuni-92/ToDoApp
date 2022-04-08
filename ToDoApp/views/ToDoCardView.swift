@@ -16,7 +16,7 @@ struct ToDoCardView: View {
                 .frame(width: 40, height: 40)
                 .padding()
             Text(todo.title)
-                .font(.title)
+                .font(.title2)
             Spacer()
         }
     }
