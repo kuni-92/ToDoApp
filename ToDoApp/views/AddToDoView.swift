@@ -15,8 +15,11 @@ struct AddToDoView: View {
     @State private var todoTitle: String = ""
     var body: some View {
         VStack {
-            TextField("New ToDo", text: $todoTitle)
+            Text("What are you doing?")
                 .font(.title)
+                .foregroundColor(Color("ButtonColor"))
+            TextField("", text: $todoTitle)
+                .font(.title2)
                 .padding()
                 .background(Color.mint)
                 .focused($isFocused)
