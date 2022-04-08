@@ -18,22 +18,14 @@ struct ToDoListView: View {
                         .foregroundColor(.primary)
                         .background(index % 2 == 0 ? Color.cyan : Color.mint)
                         .cornerRadius(10)
-                        .frame(width: 300, height: 80)
+                        .frame(width: 330, height: 80)
                 }
             }
-            .onMove(perform: {index, offset in
-                todoList.move(fromOffsets: index, toOffset: offset)
-            })
             .onDelete(perform: { ofset in
                 todoList.remove(atOffsets: ofset)
             })
         }
         .navigationTitle("ToDo List")
-        .toolbar {
-            ToolbarItem(placement: .navigationBarTrailing) {
-                EditButton()
-            }
-        }
     }
 }
 
