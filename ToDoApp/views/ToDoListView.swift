@@ -18,6 +18,7 @@ struct ToDoListView: View {
                         .foregroundColor(.primary)
                         .background(index % 2 == 0 ? Color.cyan : Color.mint)
                         .cornerRadius(10)
+                        .frame(width: 330, height: 80)
                 }
             }
             .onDelete(perform: { ofset in
