@@ -15,20 +15,7 @@ struct MainView: View {
     var body: some View {
         NavigationView {
             ZStack {
-                ScrollView {
-                    VStack {
-                        ForEach(todoList.indices, id: \.self) { index in
-                            NavigationLink(destination: DetailView()) {
-                                ToDoCardView(todo: todoList[index])
-                                    .foregroundColor(.primary)
-                                    .background(index % 2 == 0 ? Color.cyan : Color.mint)
-                                    .cornerRadius(10)
-                            }
-                        }
-                    }
-                    .navigationTitle("ToDo list")
-                }
-
+                ToDoListView(todoList: $todoList)
                 Button(action:{
                     isPresented = true
                 }) {
