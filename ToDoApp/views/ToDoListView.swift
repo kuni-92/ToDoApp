@@ -13,7 +13,7 @@ struct ToDoListView: View {
     var body: some View {
         List {
             ForEach(todoList.indices, id: \.self) { index in
-                NavigationLink(destination: DetailView()) {
+                NavigationLink(destination: DetailView(todo: $todoList[index])) {
                     ToDoCardView(todo: todoList[index])
                         .foregroundColor(.primary)
                         .background(index % 2 == 0 ? Color.cyan : Color.mint)

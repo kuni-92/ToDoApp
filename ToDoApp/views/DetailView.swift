@@ -9,13 +9,25 @@
 import SwiftUI
 
 struct DetailView: View {
+    @Binding var todo: ToDoModel
     var body: some View {
-        Text("Detail View")
+        List {
+            Section("Title") {
+                Text(todo.title)
+            }
+            Section("Detail") {
+                Text(todo.detail)
+                    .lineLimit(nil)
+            }
+            Section("Deadline") {
+                Text(todo.deadline, style: .date)
+            }
+        }
     }
 }
 
 struct DetailView_Previews: PreviewProvider {
     static var previews: some View {
-        DetailView()
+        DetailView(todo: .constant(ToDoModel.sampleToDo[0]))
     }
 }
