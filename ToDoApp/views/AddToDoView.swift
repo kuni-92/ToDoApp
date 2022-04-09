@@ -17,7 +17,7 @@ struct AddToDoView: View {
     var body: some View {
         List {
             Section("Title") {
-                TextField("What are you doing?", text: $todoTitle)
+                TextField("What do you do?", text: $todoTitle)
             }
             Section("Detail") {
                 TextEditor(text: $todoDetail)
