@@ -11,29 +11,28 @@ import Foundation
 struct ToDoModel: Identifiable {
     var id: UUID = UUID()
     var title: String
+    var detail: String
+    var deadline: Date
 
     init() {
         self.title = ""
+        self.detail = ""
+        self.deadline = Date()
     }
 
-    init(title: String) {
+    init(title: String, detail: String, deadline: Date) {
         self.title = title
+        self.detail = detail
+        self.deadline = deadline
     }
 }
 
 extension ToDoModel {
     static var sampleToDo: [ToDoModel] {
         [
-            ToDoModel(title: "Insert Title1"),
-            ToDoModel(title: "Insert Title2"),
-            ToDoModel(title: "Insert Title3"),
-            ToDoModel(title: "Insert Title4"),
-            ToDoModel(title: "Insert Title5"),
-            ToDoModel(title: "Insert Title6"),
-            ToDoModel(title: "Insert Title7"),
-            ToDoModel(title: "Insert Title8"),
-            ToDoModel(title: "Insert Title9"),
-            ToDoModel(title: "Insert Title10"),
+            ToDoModel(title: "Insert Title1", detail: "detail text", deadline: Date.now),
+            ToDoModel(title: "Insert Title2", detail: "detail text", deadline: Date.now),
+            ToDoModel(title: "Insert Title3", detail: "detail text", deadline: Date.now),
         ]
     }
 }

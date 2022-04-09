@@ -11,31 +11,35 @@ import SwiftUI
 struct AddToDoView: View {
     @Binding var isPresented: Bool
     @Binding var newToDo: ToDoModel
-    @FocusState private var isFocused: Bool
     @State private var todoTitle: String = ""
+    @State private var todoDetail: String = ""
+    @State private var todoDeadline: Date = Date.now
     var body: some View {
-        VStack {
-            Text("What are you doing?")
-                .font(.title)
-                .foregroundColor(Color("ButtonColor"))
-            TextField("", text: $todoTitle)
-                .font(.title2)
-                .padding()
-                .background(Color.mint)
-                .focused($isFocused)
-                .onSubmit {
+        List {
+            Section("Title") {
+                TextField("What are you doing?", text: $todoTitle)
+            }
+            Section("Detail") {
+                TextEditor(text: $todoDetail)
+                    .frame(height: 200)
+            }
+            Section("Deadline") {
+                DatePicker("When is the deadline?", selection: $todoDeadline, in: Date.now..., displayedComponents: .date)
+            }
+            Text("Submit")
+                .frame(maxWidth: .infinity, maxHeight: .infinity)
+                .foregroundColor(.cyan)
+                .listRowBackground(Color("ButtonColor"))
+                .contentShape(Rectangle())
+                .onTapGesture {
                     newToDo.title = todoTitle
+                    newToDo.detail = todoDetail
+                    newToDo.deadline = todoDeadline
                     todoTitle = ""
-                    isFocused = false
+                    todoDetail = ""
+                    todoDeadline = Date.now
                     isPresented = false
                 }
-        }
-        .frame(maxWidth: .infinity, maxHeight: .infinity)
-        .background(Color.cyan)
-        .onAppear {
-            DispatchQueue.main.asyncAfter(deadline:  .now() + 0.5) {
-                isFocused = true
-            }
         }
     }
 }
