@@ -8,7 +8,7 @@
 
 import Foundation
 
-struct ToDoModel: Identifiable, Codable {
+struct ToDoModel: Identifiable, Codable, Equatable {
     var id: UUID = UUID()
     var title: String
     var detail: String
@@ -21,6 +21,13 @@ struct ToDoModel: Identifiable, Codable {
     }
 
     init(title: String, detail: String, deadline: Date) {
+        self.title = title
+        self.detail = detail
+        self.deadline = deadline
+    }
+
+    init(id: UUID, title: String, detail: String, deadline: Date) {
+        self.id = id
         self.title = title
         self.detail = detail
         self.deadline = deadline

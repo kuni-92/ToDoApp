@@ -7,8 +7,14 @@
 //
 
 import SwiftUI
+import CoreData
 
 struct MainView: View {
+    @Environment(\.managedObjectContext) private var viewContext
+    @FetchRequest(
+        sortDescriptors: [NSSortDescriptor(keyPath: \ToDo.deadline, ascending: true)],
+        animation: .default
+    ) private var managedToDo: FetchedResults<ToDo>
     @State private var todoList = [ToDoModel]()
     @State private var isPresented: Bool = false
     @State private var newToDo: ToDoModel = ToDoModel()
@@ -35,6 +41,45 @@ struct MainView: View {
             }) {
                 AddToDoView(isPresented: $isPresented, newToDo: $newToDo)
             }
+        }
+        .onAppear {
+            for savedToDo in managedToDo {
+                let todo = ToDoModel(
+                    id: savedToDo.id!,
+                    title: savedToDo.title!,
+                    detail: savedToDo.detail!,
+                    deadline: savedToDo.deadline!
+                )
+                todoList.append(todo)
+            }
+
+
+        }
+        .onChange(of: todoList) { newList in
+            saveToDo(newList: newList)
+        }
+    }
+
+    private func saveToDo(newList: [ToDoModel]) {
+        do {
+            let fetchRequest = NSFetchRequest<NSManagedObject>(entityName: "ToDo")
+            let fetchResults = try viewContext.fetch(fetchRequest)
+            for savedToDo in fetchResults {
+                viewContext.delete(savedToDo)
+            }
+
+            for setToDo in newList {
+                let newToDo = ToDo(context: viewContext)
+                newToDo.id = setToDo.id
+                newToDo.title = setToDo.title
+                newToDo.detail = setToDo.detail
+                newToDo.deadline = setToDo.deadline
+
+                try viewContext.save()
+            }
+
+        } catch let error as NSError {
+            print("ToDo save error : \(error)")
         }
     }
 }
