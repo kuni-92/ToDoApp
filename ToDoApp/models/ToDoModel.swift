@@ -42,19 +42,4 @@ extension ToDoModel {
             ToDoModel(title: "Insert Title3", detail: "detail text", deadline: Date.now),
         ]
     }
-
-    func Save() {
-        let todo = try! JSONEncoder().encode(self)
-        guard let dirPath = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first else {
-            return
-        }
-
-        let filePath = dirPath.appendingPathComponent("todo.json")
-
-        do {
-            try todo.write(to: filePath)
-        } catch {
-            return
-        }
-    }
 }
