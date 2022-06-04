@@ -52,14 +52,14 @@ struct MainView: View {
                 )
                 todoList.append(todo)
             }
-
-
+            
+            
         }
         .onChange(of: todoList) { newList in
             saveToDo(newList: newList)
         }
     }
-
+    
     private func saveToDo(newList: [ToDoModel]) {
         do {
             let fetchRequest = NSFetchRequest<NSManagedObject>(entityName: "ToDo")
@@ -67,17 +67,17 @@ struct MainView: View {
             for savedToDo in fetchResults {
                 viewContext.delete(savedToDo)
             }
-
+            
             for setToDo in newList {
                 let newToDo = ToDo(context: viewContext)
                 newToDo.id = setToDo.id
                 newToDo.title = setToDo.title
                 newToDo.detail = setToDo.detail
                 newToDo.deadline = setToDo.deadline
-
+                
                 try viewContext.save()
             }
-
+            
         } catch let error as NSError {
             print("ToDo save error : \(error)")
         }
